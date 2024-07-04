@@ -6,6 +6,7 @@
 - The game should provide a feedback of the winner.
 - There should be a reset button to set the pieces to there default location.
 
+
 #### **Pseudocode**
 - Setting up the visual board 
 - Setting up a coordinate system to track the pieces on the board.
