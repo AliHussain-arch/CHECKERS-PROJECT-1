@@ -13,15 +13,22 @@ table{
 td{
     border: solid black;
     text-align: center;
-    height: 3rem;
-    width: 3rem;
+    height: 4rem;
+    min-height: 4rem;
+    width: 4rem;
+    min-width: 4rem;
+}
+.active{
+    font-size: 3rem;
 }
 .empty{
     background-color: black;
 }
-.active:hover{
+.hoverOn:hover{
+    background-color: rgb(11, 231, 11);
+}
+.clicked {
     background-color: green;
 }
-#eigthRow{
-    background-color: blue;
-}
+
+
