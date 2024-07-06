@@ -16,15 +16,16 @@ const row0 = document.querySelector('#row0'),
       row6Cells = row6.querySelectorAll('td.active'),
       row7 = document.querySelector('#row7'),
       row7Cells = row7.querySelectorAll('td.active');
+const allRows = [row0Cells,row1Cells,row2Cells,row3Cells,row4Cells,row5Cells,row6Cells,row7Cells]
 const board = [
+    ['','','',''],
     ['⚫','⚫','⚫','⚫'],
-    ['⚫','⚫','⚫','⚫'],
-    ['⚫','⚫','⚫','⚫'],
-    [0,0,0,0],
-    [0,0,0,0],
-    ['🔴','🔴','🔴','🔴'],
-    ['🔴','🔴','🔴','🔴'],
-    ['🔴','🔴','🔴','🔴'],
+    ['','','',''],
+    ['','','',''],
+    ['','','',''],
+    ['','','',''],
+    ['','','',''],
+    ['','','','']
 ];
 
 
@@ -46,21 +47,54 @@ function rendering(){
 }
 rendering();
 
-// Pieces clicked mechanism
+// legal moves
+function legalMoves(event){
+    const cell = event.target;
+    rowCoordinate = Number(cell.id.slice(1,2))
+    cellRowCoordinate = Number(cell.id.slice(2))
+    console.log(rowCoordinate,cellRowCoordinate)
 
-let clicked = false;
-
-function click(event) {
-    const element = event.target;
-    if ((element.textContent === "🔴" || element.textContent === "⚫") && clicked !== true) {
-        element.classList.add("clicked");
-        clicked = true;
+    if(cell.textContent === '⚫'){
+    if(cell === allRows[rowCoordinate][cellRowCoordinate]){
+        if(allRows[rowCoordinate+1][cellRowCoordinate].textContent === '' && cellRowCoordinate === 3){
+            allRows[rowCoordinate+1][cellRowCoordinate].style.backgroundColor = 'green';
+        }
+        else if(allRows[rowCoordinate+1][cellRowCoordinate].textContent === '' && allRows[rowCoordinate+1][cellRowCoordinate+1].textContent === ''){
+            allRows[rowCoordinate+1][cellRowCoordinate].style.backgroundColor = 'green';
+            allRows[rowCoordinate+1][cellRowCoordinate+1].style.backgroundColor = 'green';
+        }
+        else if(allRows[rowCoordinate+1][cellRowCoordinate].textContent === ''){
+            allRows[rowCoordinate+1][cellRowCoordinate].style.backgroundColor = 'green';
+        }
+        else if(allRows[rowCoordinate+1][cellRowCoordinate+1].textContent === ''){
+            allRows[rowCoordinate+1][cellRowCoordinate+1].style.backgroundColor = 'green';
+        }
     }
-    else if(element.textContent === "🔴" || element.textContent === "⚫") {
-        element.classList.remove("clicked");
-        clicked = false;
+    }
+    if(cell.textContent === '🔴'){
+        if(cell === allRows[rowCoordinate][cellRowCoordinate]){
+            if(allRows[rowCoordinate-1][cellRowCoordinate].textContent === '' && cellRowCoordinate === 0){
+                allRows[rowCoordinate-1][cellRowCoordinate].style.backgroundColor = 'green';
+            }
+            else if(allRows[rowCoordinate-1][cellRowCoordinate].textContent === '' && cellRowCoordinate === 3){
+                allRows[rowCoordinate-1][cellRowCoordinate].style.backgroundColor = 'green';
+            }
+            else if(allRows[rowCoordinate-1][cellRowCoordinate].textContent === '' && allRows[rowCoordinate-1][cellRowCoordinate-1].textContent === ''){
+                allRows[rowCoordinate-1][cellRowCoordinate].style.backgroundColor = 'green';
+                allRows[rowCoordinate-1][cellRowCoordinate-1].style.backgroundColor = 'green';
+            }
+            else if(allRows[rowCoordinate-1][cellRowCoordinate].textContent === ''){
+                allRows[rowCoordinate-1][cellRowCoordinate].style.backgroundColor = 'green';
+            }
+            else if(allRows[rowCoordinate-1][cellRowCoordinate+1].textContent === ''){
+                allRows[rowCoordinate-1][cellRowCoordinate-1].style.backgroundColor = 'green';
+            }
+        }   
     }
 }
+
+
+// Pieces clicked mechanism
 
 // Highlighting on hover mechanism
 
@@ -86,7 +120,7 @@ function piecesHover(event) {
 // Event listners collections
 
 active.forEach(element => {
-    element.addEventListener('click', click);
+    element.addEventListener('click', legalMoves);
     element.addEventListener('mouseover', piecesHover);
     element.addEventListener('mouseout', piecesHover);
 });

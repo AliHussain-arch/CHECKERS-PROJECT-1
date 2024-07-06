@@ -26,7 +26,7 @@ td{
 .empty{
     background-color: white;
     color: white;
-    display: none;
+    display: ;
 }
 .hoverOn:hover{
     background-color: rgb(11, 231, 11);
