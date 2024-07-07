@@ -20,10 +20,10 @@ const allRows = [row0Cells,row1Cells,row2Cells,row3Cells,row4Cells,row5Cells,row
 const board = [
     ['','','',''],
     ['','','',''],
+    ['⚫','⚫','⚫','⚫'],
+    ['🔴','🔴','🔴','🔴'],
     ['','','',''],
     ['⚫','⚫','⚫','⚫'],
-    ['','','',''],
-    ['','','',''],
     ['','','',''],
     ['','','',''],
 ];
@@ -138,12 +138,25 @@ function legalMoves(event){
             else if(allRows[rowCoordinate-1][cellRowCoordinate].textContent === ''){
                 allRows[rowCoordinate-1][cellRowCoordinate].style.backgroundColor = 'green';
             }
-            else if(allRows[rowCoordinate-1][cellRowCoordinate+1].textContent === ''){
-                allRows[rowCoordinate-1][cellRowCoordinate+1].style.backgroundColor = 'green';
-            }
     // ----------------------------------------------------------------------------------------------------------------------------------
     
-    // LEGAL MOVEMENT WITH CAPTURING-----------------------------------------------------------------------------------------------------
+    // LEGAL MOVEMENT WITH CAPTURING -----------------------------------------------------------------------------------------------------
+            if(allRows[rowCoordinate-1][cellRowCoordinate].textContent === '⚫' && cellRowCoordinate === 0){
+                allRows[rowCoordinate-2][cellRowCoordinate+1].style.backgroundColor = 'green';
+            }
+            else if(allRows[rowCoordinate-1][cellRowCoordinate].textContent === '⚫' && cellRowCoordinate === 3){
+                allRows[rowCoordinate-2][cellRowCoordinate-1].style.backgroundColor = 'green';
+            }
+            else if(allRows[rowCoordinate-1][cellRowCoordinate].textContent === '⚫' && allRows[rowCoordinate+1][cellRowCoordinate+1].textContent === '⚫'){
+                allRows[rowCoordinate-2][cellRowCoordinate-1].style.backgroundColor = 'green';
+                allRows[rowCoordinate-2][cellRowCoordinate+1].style.backgroundColor = 'green';
+            }
+            else if(allRows[rowCoordinate-1][cellRowCoordinate].textContent === '⚫'){
+                allRows[rowCoordinate-2][cellRowCoordinate].style.backgroundColor = 'green';
+            }
+            else if(allRows[rowCoordinate-1][cellRowCoordinate+1].textContent === '⚫'){
+                allRows[rowCoordinate-2][cellRowCoordinate+1].style.backgroundColor = 'green';
+            }
     // ----------------------------------------------------------------------------------------------------------------------------------
 
         }
@@ -162,12 +175,23 @@ function legalMoves(event){
             else if(allRows[rowCoordinate-1][cellRowCoordinate].textContent === ''){
                 allRows[rowCoordinate-1][cellRowCoordinate].style.backgroundColor = 'green';
             }
-            else if(allRows[rowCoordinate-1][cellRowCoordinate-1].textContent === ''){
-                allRows[rowCoordinate-1][cellRowCoordinate-1].style.backgroundColor = 'green';
-            }
     // ----------------------------------------------------------------------------------------------------------------------------------
 
-    // LEGAL MOVEMENT WITH CAPTURING-----------------------------------------------------------------------------------------------------
+    // LEGAL MOVEMENT WITH CAPTURING START WORKING HERE-----------------------------------------------------------------------------------------------------
+            if(allRows[rowCoordinate-1][cellRowCoordinate].textContent === '⚫' && cellRowCoordinate === 0){
+                allRows[rowCoordinate-2][cellRowCoordinate+1].style.backgroundColor = 'green';
+            }
+            else if(allRows[rowCoordinate-1][cellRowCoordinate].textContent === '⚫' && cellRowCoordinate === 3){
+                allRows[rowCoordinate-2][cellRowCoordinate-1].style.backgroundColor = 'green';
+            }
+            if(cellRowCoordinate === 1 || cellRowCoordinate === 2){
+                if(allRows[rowCoordinate-1][cellRowCoordinate].textContent === '⚫'){
+                    allRows[rowCoordinate-2][cellRowCoordinate-1].style.backgroundColor = 'green';
+                }
+                if(allRows[rowCoordinate-1][cellRowCoordinate+1].textContent === '⚫'){
+                    allRows[rowCoordinate-2][cellRowCoordinate+1].style.backgroundColor = 'green';
+                }
+            }
     // ----------------------------------------------------------------------------------------------------------------------------------
 
         }   
