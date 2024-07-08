@@ -1,3 +1,4 @@
+const message = document.querySelector('#message')
 const active = document.querySelectorAll(".active");
 const userBoard = document.querySelector("#boardtable");
 const resetButton = document.querySelector('#resetButton');
@@ -213,8 +214,6 @@ function legalMoves(event){
     }
 }
 
-
-
 // Pieces clicked mechanism
 
 // Highlighting on hover mechanism
@@ -231,7 +230,24 @@ function piecesHover(event) {
     }
 }
 
-// Movement mechanism black pieces
+// Movement function
+let choosed = '';
+let choosedcoordinate = ''
+function movement(event){
+    const cell = event.target;
+    rowCoordinate = Number(cell.id.slice(1,2))
+    cellRowCoordinate = Number(cell.id.slice(2))
+    console.log(cell);
+    console.log(rowCoordinate, cellRowCoordinate);
+    if (cell.textContent === '⚫' || cell.textContent === '🔴'){
+        choosed = cell.textContent;
+        choosedcoordinate = document.getElementById(cell.id);
+    }
+    else if (cell.style.backgroundColor === 'green') {
+        cell.textContent = choosed;
+        choosedcoordinate.textContent = '';
+    }
+}
 
 //Reset button
 function resetGame(){
@@ -260,17 +276,15 @@ function resetGame(){
     });
     rendering();
 }
-
+resetButton.addEventListener('click',resetGame);
 
 // Event listners collections
-
 active.forEach(element => {
     element.addEventListener('click', legalMoves);
+    element.addEventListener('click',movement);
     element.addEventListener('mouseover', piecesHover);
     element.addEventListener('mouseout', piecesHover);
 });
-
-resetButton.addEventListener('click',resetGame);
 
 
 
