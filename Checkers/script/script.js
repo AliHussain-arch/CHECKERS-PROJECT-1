@@ -261,7 +261,7 @@ function movement(event){
             }
         }
     }
-    
+    winnerFinder();
 }
 
 // King Pieces creator
@@ -278,6 +278,32 @@ function kingCreator(){
     });
 }
 
+// Winner finder
+let winnerObject = {
+    blackPiecesCount : 0,
+    redPiecesCount : 0,
+};
+function winnerFinder(){
+    winnerObject = {
+        blackPiecesCount : 0,
+        redPiecesCount : 0,
+    };
+    activeTableCells.forEach(element => {
+        if(element.textContent === "⚫" || element.textContent === "⬛"){
+            winnerObject.blackPiecesCount ++;
+        }
+        else if(element.textContent === "🔴" || element.textContent === "🟥"){
+            winnerObject.redPiecesCount ++;
+        }
+    });
+    if(winnerObject.blackPiecesCount === 0){
+        message.textContent = 'RED WON !'
+    }
+    else if(winnerObject.redPiecesCount === 0){
+        message.textContent = 'BLACK WON !'
+    }
+    
+}
 
 //Reset button
 function resetGame(){
@@ -289,7 +315,7 @@ function resetGame(){
         ['','','',''],
         ['','','',''],
         ['','','',''],
-        ['⚫','⚫','⚫','⚫'],
+        ['','','',''],
     ];
     for(let i = 0;i<4;i++){
         board[0][i]=defaultboard[0][i];

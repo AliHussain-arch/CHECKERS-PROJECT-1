@@ -2,13 +2,11 @@ html,body{
     display: flex;
     align-items: center;
     justify-content: center;
-}
-header{
     text-align: center;
-    height: 5rem;
 }
 table{
     border-collapse: collapse;
+    border: 1rem;
 }
 td{
     border: solid black;
@@ -44,6 +42,8 @@ td{
 }
 #resetButton:hover{
     color: red;
+}
+#message{
 }
 
 
