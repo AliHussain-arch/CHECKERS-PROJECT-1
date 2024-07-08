@@ -1,6 +1,7 @@
 const active = document.querySelectorAll(".active");
 const userBoard = document.querySelector("#boardtable");
-const resetButton = document.querySelector('#resetButton')
+const resetButton = document.querySelector('#resetButton');
+const activeTableCells = document.querySelectorAll('td.active');
 const row0 = document.querySelector('#row0'),
       row0Cells = row0.querySelectorAll('td.active'),
       row1 = document.querySelector('#row1'),
@@ -22,8 +23,8 @@ const board = [
     ['','','',''],
     ['','','',''],
     ['','','⚫',''],
+    ['','','⚫',''],
     ['🔴','🔴','🔴','🔴'],
-    ['','','',''],
     ['⚫','⚫','⚫','⚫'],
     ['','','',''],
     ['','','',''],
@@ -56,147 +57,159 @@ function legalMoves(event){
     const cell = event.target;
     rowCoordinate = Number(cell.id.slice(1,2))
     cellRowCoordinate = Number(cell.id.slice(2))
-    console.log(rowCoordinate,cellRowCoordinate)
-
     if(cell.textContent === '⚫'){
-        
-        if(rowCoordinate === 0 || rowCoordinate%2===0){
-
-    // LEGAL MOVEMENT WITHOUT CAPTURING--------------------------------------------------------------------------------------------------
-            if(allRows[rowCoordinate+1][cellRowCoordinate].textContent === '' && cellRowCoordinate === 3){
-                allRows[rowCoordinate+1][cellRowCoordinate].style.backgroundColor = 'green';
-            }
-            else if(allRows[rowCoordinate+1][cellRowCoordinate].textContent === '' && allRows[rowCoordinate+1][cellRowCoordinate+1].textContent === ''){
-                allRows[rowCoordinate+1][cellRowCoordinate].style.backgroundColor = 'green';
-                allRows[rowCoordinate+1][cellRowCoordinate+1].style.backgroundColor = 'green';
-            }
-            else if(allRows[rowCoordinate+1][cellRowCoordinate].textContent === ''){
-                allRows[rowCoordinate+1][cellRowCoordinate].style.backgroundColor = 'green';
-            }
-    // ----------------------------------------------------------------------------------------------------------------------------------
-    
-    // LEGAL MOVEMENT WITH CAPTURING-----------------------------------------------------------------------------------------------------
-            else if(allRows[rowCoordinate+1][cellRowCoordinate].textContent === '🔴' && cellRowCoordinate === 0){
-                allRows[rowCoordinate+2][cellRowCoordinate+1].style.backgroundColor = 'green';
-            }
-            else if(allRows[rowCoordinate+1][cellRowCoordinate].textContent === '🔴' && cellRowCoordinate === 3){
-                allRows[rowCoordinate+2][cellRowCoordinate-1].style.backgroundColor = 'green';
-            }
-            else if(allRows[rowCoordinate+1][cellRowCoordinate].textContent === '🔴' && allRows[rowCoordinate+1][cellRowCoordinate+1].textContent === '🔴'){
-                allRows[rowCoordinate+2][cellRowCoordinate-1].style.backgroundColor = 'green';
-                allRows[rowCoordinate+2][cellRowCoordinate+1].style.backgroundColor = 'green';
-            }
-            else if(allRows[rowCoordinate+1][cellRowCoordinate].textContent === '🔴'){
-                allRows[rowCoordinate+2][cellRowCoordinate].style.backgroundColor = 'green';
-            }
-    // ----------------------------------------------------------------------------------------------------------------------------------
-
-    }
-        else if(rowCoordinate%2!==0 && rowCoordinate !== 7){
-
-    // LEGAL MOVEMENT WITHOUT CAPTURING--------------------------------------------------------------------------------------------------
-            if(allRows[rowCoordinate+1][cellRowCoordinate].textContent === '' && cellRowCoordinate === 0){
-                allRows[rowCoordinate+1][cellRowCoordinate].style.backgroundColor = 'green';
-            }
-            else if(allRows[rowCoordinate+1][cellRowCoordinate].textContent === '' && allRows[rowCoordinate+1][cellRowCoordinate-1].textContent === ''){
-                allRows[rowCoordinate+1][cellRowCoordinate].style.backgroundColor = 'green';
-                allRows[rowCoordinate+1][cellRowCoordinate-1].style.backgroundColor = 'green';
-            }
-            else if(allRows[rowCoordinate+1][cellRowCoordinate].textContent === ''){
-                allRows[rowCoordinate+1][cellRowCoordinate].style.backgroundColor = 'green';
-            }
-    // ----------------------------------------------------------------------------------------------------------------------------------
-
-    // LEGAL MOVEMENT WITH CAPTURING ----------------------------------------------------------------------------------------------------
-            if(allRows[rowCoordinate+1][cellRowCoordinate].textContent === '🔴' && cellRowCoordinate === 0){
-                allRows[rowCoordinate+2][cellRowCoordinate+1].style.backgroundColor = 'green';
-            }
-            else if(allRows[rowCoordinate+1][cellRowCoordinate].textContent === '🔴' && cellRowCoordinate === 3){
-                allRows[rowCoordinate+2][cellRowCoordinate-1].style.backgroundColor = 'green';
-            }
-            else if(allRows[rowCoordinate+1][cellRowCoordinate].textContent === '🔴' && allRows[rowCoordinate+1][cellRowCoordinate+1].textContent === '🔴'){
-                allRows[rowCoordinate+2][cellRowCoordinate-1].style.backgroundColor = 'green';
-                allRows[rowCoordinate+2][cellRowCoordinate+1].style.backgroundColor = 'green';
-            }
-            else if(allRows[rowCoordinate+1][cellRowCoordinate].textContent === '🔴'){
-                allRows[rowCoordinate+2][cellRowCoordinate].style.backgroundColor = 'green';
-            }
-    // ----------------------------------------------------------------------------------------------------------------------------------
-
-    }
-    }
-    if(cell.textContent === '🔴'){
-
-        if(rowCoordinate !== 0 && rowCoordinate%2===0){
-
-    // LEGAL MOVEMENT WITHOUT CAPTURING -------------------------------------------------------------------------------------------------
-            if(allRows[rowCoordinate-1][cellRowCoordinate].textContent === '' && cellRowCoordinate === 3){
-                allRows[rowCoordinate-1][cellRowCoordinate].style.backgroundColor = 'green';
-            }
-            else if(allRows[rowCoordinate-1][cellRowCoordinate].textContent === '' && allRows[rowCoordinate+1][cellRowCoordinate+1].textContent === ''){
-                allRows[rowCoordinate-1][cellRowCoordinate].style.backgroundColor = 'green';
-                allRows[rowCoordinate-1][cellRowCoordinate+1].style.backgroundColor = 'green';
-            }
-            else if(allRows[rowCoordinate-1][cellRowCoordinate].textContent === ''){
-                allRows[rowCoordinate-1][cellRowCoordinate].style.backgroundColor = 'green';
-            }
-    // ----------------------------------------------------------------------------------------------------------------------------------
-    
-    // LEGAL MOVEMENT WITH CAPTURING -----------------------------------------------------------------------------------------------------
-            else if(allRows[rowCoordinate-1][cellRowCoordinate].textContent === '⚫' && cellRowCoordinate === 0){
-                allRows[rowCoordinate-2][cellRowCoordinate+1].style.backgroundColor = 'green';
-            }
-            else if(allRows[rowCoordinate-1][cellRowCoordinate].textContent === '⚫' && cellRowCoordinate === 3){
-                allRows[rowCoordinate-2][cellRowCoordinate-1].style.backgroundColor = 'green';
-            }
-            else if(allRows[rowCoordinate-1][cellRowCoordinate].textContent === '⚫' && allRows[rowCoordinate+1][cellRowCoordinate+1].textContent === '⚫'){
-                allRows[rowCoordinate-2][cellRowCoordinate-1].style.backgroundColor = 'green';
-                allRows[rowCoordinate-2][cellRowCoordinate+1].style.backgroundColor = 'green';
-            }
-            else if(allRows[rowCoordinate-1][cellRowCoordinate].textContent === '⚫'){
-                allRows[rowCoordinate-2][cellRowCoordinate].style.backgroundColor = 'green';
-            }
-            else if(allRows[rowCoordinate-1][cellRowCoordinate+1].textContent === '⚫'){
-                allRows[rowCoordinate-2][cellRowCoordinate+1].style.backgroundColor = 'green';
-            }
-    // ----------------------------------------------------------------------------------------------------------------------------------
-
+        if (rowCoordinate === 0){
         }
-    
-    
-        else if(rowCoordinate%2 !== 0){
-
-    // LEGAL MOVEMENT WITHOUT CAPTURING--------------------------------------------------------------------------------------------------
-            if(allRows[rowCoordinate-1][cellRowCoordinate].textContent === '' && cellRowCoordinate === 0){
-                allRows[rowCoordinate-1][cellRowCoordinate].style.backgroundColor = 'green';
-            }
-            else if(allRows[rowCoordinate-1][cellRowCoordinate].textContent === '' && allRows[rowCoordinate-1][cellRowCoordinate-1].textContent === ''){
-                allRows[rowCoordinate-1][cellRowCoordinate].style.backgroundColor = 'green';
-                allRows[rowCoordinate-1][cellRowCoordinate-1].style.backgroundColor = 'green';
-            }
-            else if(allRows[rowCoordinate-1][cellRowCoordinate].textContent === ''){
-                allRows[rowCoordinate-1][cellRowCoordinate].style.backgroundColor = 'green';
-            }
-    // ----------------------------------------------------------------------------------------------------------------------------------
-
-    // LEGAL MOVEMENT WITH CAPTURING START WORKING HERE-----------------------------------------------------------------------------------------------------
-            else if(allRows[rowCoordinate-1][cellRowCoordinate].textContent === '⚫' && cellRowCoordinate === 0){
-                allRows[rowCoordinate-2][cellRowCoordinate+1].style.backgroundColor = 'green';
-            }
-            else if(allRows[rowCoordinate-1][cellRowCoordinate].textContent === '⚫' && cellRowCoordinate === 3){
-                allRows[rowCoordinate-2][cellRowCoordinate-1].style.backgroundColor = 'green';
+        else if(rowCoordinate%2 ===0){
+            if(cellRowCoordinate === 0 || cellRowCoordinate === 3){
+                if(cellRowCoordinate === 0){
+                    if(allRows[rowCoordinate-1][cellRowCoordinate+1].textContent === ''){
+                        allRows[rowCoordinate-1][cellRowCoordinate+1].style.backgroundColor = 'green';
+                    }
+                }
+                if(allRows[rowCoordinate-1][cellRowCoordinate].textContent === ''){
+                    allRows[rowCoordinate-1][cellRowCoordinate].style.backgroundColor = 'green';
+                }
+                else if(allRows[rowCoordinate-1][cellRowCoordinate].textContent === '🔴' || allRows[rowCoordinate-1][cellRowCoordinate].textContent === '🟥'){
+                    if(cellRowCoordinate===0){
+                        if(allRows[rowCoordinate-2][cellRowCoordinate+1].textContent === ''){
+                         allRows[rowCoordinate-2][cellRowCoordinate+1].style.backgroundColor = 'green';
+                        }
+                    }
+                    else if(cellRowCoordinate===3){
+                        if(allRows[rowCoordinate-2][cellRowCoordinate-1].textContent === ''){
+                            allRows[rowCoordinate-2][cellRowCoordinate-1].style.backgroundColor = 'green';
+                        }
+                    }
+                }
             }
             else if(cellRowCoordinate === 1 || cellRowCoordinate === 2){
-                if(allRows[rowCoordinate-1][cellRowCoordinate].textContent === '⚫'){
-                    allRows[rowCoordinate-2][cellRowCoordinate-1].style.backgroundColor = 'green';
+                if(allRows[rowCoordinate-1][cellRowCoordinate].textContent === '' || allRows[rowCoordinate-1][cellRowCoordinate+1].textContent === ''){
+                    if(allRows[rowCoordinate-1][cellRowCoordinate+1].textContent === ''){
+                        allRows[rowCoordinate-1][cellRowCoordinate+1].style.backgroundColor = 'green';
+                    }
+                    if(allRows[rowCoordinate-1][cellRowCoordinate]){
+                        allRows[rowCoordinate-1][cellRowCoordinate].style.backgroundColor = 'green';
+                    }
+                    
                 }
-                if(allRows[rowCoordinate-1][cellRowCoordinate+1].textContent === '⚫'){
-                    allRows[rowCoordinate-2][cellRowCoordinate+1].style.backgroundColor = 'green';
+                else if(allRows[rowCoordinate-1][cellRowCoordinate].textContent === '🔴' || allRows[rowCoordinate-1][cellRowCoordinate+1].textContent === '🔴'){
+                    if(allRows[rowCoordinate-2][cellRowCoordinate+1].textContent === ''){
+                        allRows[rowCoordinate-2][cellRowCoordinate+1].style.backgroundColor = 'green';
+                    }
+                    if(allRows[rowCoordinate-2][cellRowCoordinate-1].textContent === ''){
+                        allRows[rowCoordinate-2][cellRowCoordinate-1].style.backgroundColor = 'green';
+                    }
                 }
             }
-    // ----------------------------------------------------------------------------------------------------------------------------------
 
-        }   
+    }
+        else if(rowCoordinate%2 !==0){
+            if(cellRowCoordinate === 0 || cellRowCoordinate === 3){
+                if(allRows[rowCoordinate-1][cellRowCoordinate].textContent === ''){
+                    allRows[rowCoordinate-1][cellRowCoordinate].style.backgroundColor = 'green';
+                }
+                if(cellRowCoordinate === 3 && allRows[rowCoordinate-1][cellRowCoordinate-1].textContent === ''){
+                    allRows[rowCoordinate-1][cellRowCoordinate-1].style.backgroundColor = 'green';
+                }
+                else if(allRows[rowCoordinate-1][cellRowCoordinate].textContent === '🔴' || allRows[rowCoordinate-1][cellRowCoordinate-1].textContent === '🔴' || allRows[rowCoordinate-1][cellRowCoordinate].textContent === '🟥' || allRows[rowCoordinate-1][cellRowCoordinate-1].textContent === '🟥'){
+                    if(cellRowCoordinate===0){
+                        if(allRows[rowCoordinate-2][cellRowCoordinate+1].textContent === ''){
+                            allRows[rowCoordinate-2][cellRowCoordinate+1].style.backgroundColor = 'green';
+                        }
+                    }
+                    else if(cellRowCoordinate===3){
+                        if(allRows[rowCoordinate-2][cellRowCoordinate-1].textContent === ''){
+                            allRows[rowCoordinate-2][cellRowCoordinate-1].style.backgroundColor = 'green';
+                        }
+                    }
+                }
+            }
+            else if(cellRowCoordinate === 1 || cellRowCoordinate === 2){
+                if(allRows[rowCoordinate-1][cellRowCoordinate].textContent === '' || allRows[rowCoordinate-1][cellRowCoordinate-1].textContent === ''){
+                    if(allRows[rowCoordinate-1][cellRowCoordinate-1].textContent === ''){
+                        allRows[rowCoordinate-1][cellRowCoordinate-1].style.backgroundColor = 'green';
+                    }
+                    if(allRows[rowCoordinate-1][cellRowCoordinate].textContent === ''){
+                        allRows[rowCoordinate-1][cellRowCoordinate].style.backgroundColor = 'green';
+                    }
+                }
+                else if(allRows[rowCoordinate-1][cellRowCoordinate].textContent === '🔴' || allRows[rowCoordinate-1][cellRowCoordinate+1].textContent === '🔴' || allRows[rowCoordinate-1][cellRowCoordinate].textContent === '🟥' || allRows[rowCoordinate-1][cellRowCoordinate+1].textContent === '🟥'){
+                    if(allRows[rowCoordinate-2][cellRowCoordinate-1].textContent === ''){
+                        allRows[rowCoordinate-2][cellRowCoordinate-1].style.backgroundColor = 'green';
+                    }
+                    if(allRows[rowCoordinate-2][cellRowCoordinate+1].textContent === ''){
+                        allRows[rowCoordinate-2][cellRowCoordinate+1].style.backgroundColor = 'green';
+                    }
+                }
+            }
+        }
+    }
+    if(cell.textContent === '🔴'){
+        if (rowCoordinate === 7){
+        }
+        else if (rowCoordinate%2 === 0){
+            if(cellRowCoordinate === 0 || cellRowCoordinate === 3){
+                if(allRows[rowCoordinate+1][cellRowCoordinate].textContent === ''){
+                    allRows[rowCoordinate+1][cellRowCoordinate].style.backgroundColor = 'green';
+                }
+                if(cellRowCoordinate === 0){
+                    if(allRows[rowCoordinate+1][cellRowCoordinate+1].textContent === ''){
+                        allRows[rowCoordinate+1][cellRowCoordinate+1].style.backgroundColor = 'green';
+                    }
+                    if(allRows[rowCoordinate+1][cellRowCoordinate+1].textContent === '⚫'){
+                        if(allRows[rowCoordinate+2][cellRowCoordinate+1].textContent === ''){
+                            allRows[rowCoordinate+2][cellRowCoordinate+1].style.backgroundColor = 'green';
+                        }
+                    }
+                }
+                if(cellRowCoordinate === 3){
+                    if(allRows[rowCoordinate+1][cellRowCoordinate].textContent === '⚫'){
+                        if(allRows[rowCoordinate+2][cellRowCoordinate-1].textContent === ''){
+                            allRows[rowCoordinate+2][cellRowCoordinate-1].style.backgroundColor = 'green';
+                        }
+                    }
+                }
+            }
+            else if(cellRowCoordinate === 1 || cellRowCoordinate === 2){
+                if(allRows[rowCoordinate+1][cellRowCoordinate].textContent === ''){
+                    allRows[rowCoordinate+1][cellRowCoordinate].style.backgroundColor = 'green';
+                }
+                if(allRows[rowCoordinate+1][cellRowCoordinate+1].textContent === ''){
+                    allRows[rowCoordinate+1][cellRowCoordinate+1].style.backgroundColor = 'green';
+                }
+                if(allRows[rowCoordinate+1][cellRowCoordinate].textContent === '⚫'){
+                    if(allRows[rowCoordinate+2][cellRowCoordinate-1].textContent === ''){
+                        allRows[rowCoordinate+2][cellRowCoordinate-1].style.backgroundColor = 'green';
+                    }
+                }
+                if(allRows[rowCoordinate+1][cellRowCoordinate+1].textContent === '⚫'){
+                    if(allRows[rowCoordinate+2][cellRowCoordinate+1].textContent === ''){
+                        allRows[rowCoordinate+2][cellRowCoordinate+1].style.backgroundColor = 'green';
+                    }
+                }
+            }
+        }
+        else if(rowCoordinate%2 !== 0){
+            if(cellRowCoordinate === 0 || cellRowCoordinate === 3){
+                if(allRows[rowCoordinate+1][cellRowCoordinate].textContent === ''){
+                    allRows[rowCoordinate+1][cellRowCoordinate].style.backgroundColor = 'green';
+                }
+                if(cellRowCoordinate === 3){
+                    if(allRows[rowCoordinate+1][cellRowCoordinate-1].textContent === ''){
+                        allRows[rowCoordinate+1][cellRowCoordinate-1].style.backgroundColor = 'green';
+                    }
+                }
+            }
+            else if(cellRowCoordinate === 1 || cellRowCoordinate === 2){
+                if(allRows[rowCoordinate+1][cellRowCoordinate].textContent === ''){
+                    allRows[rowCoordinate+1][cellRowCoordinate].style.backgroundColor = 'green';
+                }
+                if(allRows[rowCoordinate+1][cellRowCoordinate-1].textContent === ''){
+                    allRows[rowCoordinate+1][cellRowCoordinate-1].style.backgroundColor = 'green';
+                }
+            }
+        }
     }
 }
 
@@ -205,9 +218,7 @@ function legalMoves(event){
 // Pieces clicked mechanism
 
 // Highlighting on hover mechanism
-
 let hover = false;
-
 function piecesHover(event) {
     const element = event.target;
     if ((element.textContent === "🔴" || element.textContent === "⚫") && hover === false) {
@@ -227,7 +238,7 @@ function resetGame(){
     const defaultboard = [
         ['🔴','🔴','🔴','🔴'],
         ['🔴','🔴','🔴','🔴'],
-        ['🔴','🔴','🔴','🔴'],
+        ['🔴','🔴','🔴','🔴'], 
         ['','','',''],
         ['','','',''],
         ['⚫','⚫','⚫','⚫'],
@@ -235,15 +246,19 @@ function resetGame(){
         ['⚫','⚫','⚫','⚫'],
     ];
     for(let i = 0;i<4;i++){
-        row0Cells[i].textContent=defaultboard[0][i];
-        row1Cells[i].textContent=defaultboard[1][i];
-        row2Cells[i].textContent=defaultboard[2][i];
-        row3Cells[i].textContent=defaultboard[3][i];
-        row4Cells[i].textContent=defaultboard[4][i];
-        row5Cells[i].textContent=defaultboard[5][i];
-        row6Cells[i].textContent=defaultboard[6][i];
-        row7Cells[i].textContent=defaultboard[7][i];
+        board[0][i]=defaultboard[0][i];
+        board[1][i]=defaultboard[1][i];
+        board[2][i]=defaultboard[2][i];
+        board[3][i]=defaultboard[3][i];
+        board[4][i]=defaultboard[4][i];
+        board[5][i]=defaultboard[5][i];
+        board[6][i]=defaultboard[6][i];
+        board[7][i]=defaultboard[7][i];
     }
+    activeTableCells.forEach(element => {
+        element.style.backgroundColor = 'grey';
+    });
+    rendering();
 }
 
 
