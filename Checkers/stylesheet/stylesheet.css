@@ -34,6 +34,17 @@ td{
 .clicked {
     background-color: green;
 }
+#resetButtonDiv{
+    text-align: center;
+    padding: 1rem;
+}
+#resetButton{
+    font-size: 2rem;
+    background-color: white;
+}
+#resetButton:hover{
+    color: red;
+}
 
 
 

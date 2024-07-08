@@ -1,5 +1,6 @@
 const active = document.querySelectorAll(".active");
 const userBoard = document.querySelector("#boardtable");
+const resetButton = document.querySelector('#resetButton')
 const row0 = document.querySelector('#row0'),
       row0Cells = row0.querySelectorAll('td.active'),
       row1 = document.querySelector('#row1'),
@@ -20,13 +21,14 @@ const allRows = [row0Cells,row1Cells,row2Cells,row3Cells,row4Cells,row5Cells,row
 const board = [
     ['','','',''],
     ['','','',''],
-    ['⚫','⚫','⚫','⚫'],
+    ['','','⚫',''],
     ['🔴','🔴','🔴','🔴'],
     ['','','',''],
     ['⚫','⚫','⚫','⚫'],
     ['','','',''],
     ['','','',''],
 ];
+
 const arrayOfRedPieces = ['🔴','🔴','🔴','🔴'];
 const arrayOfBlackPieces = ['⚫','⚫','⚫','⚫'];
 
@@ -74,7 +76,7 @@ function legalMoves(event){
     // ----------------------------------------------------------------------------------------------------------------------------------
     
     // LEGAL MOVEMENT WITH CAPTURING-----------------------------------------------------------------------------------------------------
-            if(allRows[rowCoordinate+1][cellRowCoordinate].textContent === '🔴' && cellRowCoordinate === 0){
+            else if(allRows[rowCoordinate+1][cellRowCoordinate].textContent === '🔴' && cellRowCoordinate === 0){
                 allRows[rowCoordinate+2][cellRowCoordinate+1].style.backgroundColor = 'green';
             }
             else if(allRows[rowCoordinate+1][cellRowCoordinate].textContent === '🔴' && cellRowCoordinate === 3){
@@ -141,7 +143,7 @@ function legalMoves(event){
     // ----------------------------------------------------------------------------------------------------------------------------------
     
     // LEGAL MOVEMENT WITH CAPTURING -----------------------------------------------------------------------------------------------------
-            if(allRows[rowCoordinate-1][cellRowCoordinate].textContent === '⚫' && cellRowCoordinate === 0){
+            else if(allRows[rowCoordinate-1][cellRowCoordinate].textContent === '⚫' && cellRowCoordinate === 0){
                 allRows[rowCoordinate-2][cellRowCoordinate+1].style.backgroundColor = 'green';
             }
             else if(allRows[rowCoordinate-1][cellRowCoordinate].textContent === '⚫' && cellRowCoordinate === 3){
@@ -178,13 +180,13 @@ function legalMoves(event){
     // ----------------------------------------------------------------------------------------------------------------------------------
 
     // LEGAL MOVEMENT WITH CAPTURING START WORKING HERE-----------------------------------------------------------------------------------------------------
-            if(allRows[rowCoordinate-1][cellRowCoordinate].textContent === '⚫' && cellRowCoordinate === 0){
+            else if(allRows[rowCoordinate-1][cellRowCoordinate].textContent === '⚫' && cellRowCoordinate === 0){
                 allRows[rowCoordinate-2][cellRowCoordinate+1].style.backgroundColor = 'green';
             }
             else if(allRows[rowCoordinate-1][cellRowCoordinate].textContent === '⚫' && cellRowCoordinate === 3){
                 allRows[rowCoordinate-2][cellRowCoordinate-1].style.backgroundColor = 'green';
             }
-            if(cellRowCoordinate === 1 || cellRowCoordinate === 2){
+            else if(cellRowCoordinate === 1 || cellRowCoordinate === 2){
                 if(allRows[rowCoordinate-1][cellRowCoordinate].textContent === '⚫'){
                     allRows[rowCoordinate-2][cellRowCoordinate-1].style.backgroundColor = 'green';
                 }
@@ -220,7 +222,29 @@ function piecesHover(event) {
 
 // Movement mechanism black pieces
 
-
+//Reset button
+function resetGame(){
+    const defaultboard = [
+        ['🔴','🔴','🔴','🔴'],
+        ['🔴','🔴','🔴','🔴'],
+        ['🔴','🔴','🔴','🔴'],
+        ['','','',''],
+        ['','','',''],
+        ['⚫','⚫','⚫','⚫'],
+        ['⚫','⚫','⚫','⚫'],
+        ['⚫','⚫','⚫','⚫'],
+    ];
+    for(let i = 0;i<4;i++){
+        row0Cells[i].textContent=defaultboard[0][i];
+        row1Cells[i].textContent=defaultboard[1][i];
+        row2Cells[i].textContent=defaultboard[2][i];
+        row3Cells[i].textContent=defaultboard[3][i];
+        row4Cells[i].textContent=defaultboard[4][i];
+        row5Cells[i].textContent=defaultboard[5][i];
+        row6Cells[i].textContent=defaultboard[6][i];
+        row7Cells[i].textContent=defaultboard[7][i];
+    }
+}
 
 
 // Event listners collections
@@ -230,6 +254,8 @@ active.forEach(element => {
     element.addEventListener('mouseover', piecesHover);
     element.addEventListener('mouseout', piecesHover);
 });
+
+resetButton.addEventListener('click',resetGame);
 
 
 
