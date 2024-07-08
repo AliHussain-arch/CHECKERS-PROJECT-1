@@ -214,7 +214,82 @@ function legalMoves(event){
                 }
             }
         }
-        console.log('end reached');
+        if(cell.textContent === '⬛' || cell.textContent === '🟥'){
+            if(rowCoordinate !== 0 && rowCoordinate !== 7){
+                if(rowCoordinate%2 !== 0){
+                    if(cellRowCoordinate !== 0){
+                        if(allRows[rowCoordinate+1][cellRowCoordinate].textContent===''){
+                            allRows[rowCoordinate+1][cellRowCoordinate].style.backgroundColor = 'green';
+                        }
+                        if(allRows[rowCoordinate+1][cellRowCoordinate-1].textContent===''){
+                            allRows[rowCoordinate+1][cellRowCoordinate-1].style.backgroundColor = 'green';
+                        }
+                        if(allRows[rowCoordinate-1][cellRowCoordinate].textContent===''){
+                            allRows[rowCoordinate-1][cellRowCoordinate].style.backgroundColor = 'green';
+                        }
+                        if(allRows[rowCoordinate-1][cellRowCoordinate-1].textContent===''){
+                            allRows[rowCoordinate-1][cellRowCoordinate-1].style.backgroundColor = 'green';
+                        }
+                    }
+                    else{
+                        if(allRows[rowCoordinate+1][cellRowCoordinate].textContent===''){
+                            allRows[rowCoordinate+1][cellRowCoordinate].style.backgroundColor = 'green';
+                        }
+                        if(allRows[rowCoordinate-1][cellRowCoordinate].textContent===''){
+                            allRows[rowCoordinate-1][cellRowCoordinate].style.backgroundColor = 'green';
+                        }
+                    }
+                }
+                else if(rowCoordinate%2 === 0){
+                    if(cellRowCoordinate !== 3){
+                        if(allRows[rowCoordinate+1][cellRowCoordinate].textContent===''){
+                            allRows[rowCoordinate+1][cellRowCoordinate].style.backgroundColor = 'green';
+                        }
+                        if(allRows[rowCoordinate+1][cellRowCoordinate+1].textContent===''){
+                            allRows[rowCoordinate+1][cellRowCoordinate+1].style.backgroundColor = 'green';
+                        }
+                        if(allRows[rowCoordinate-1][cellRowCoordinate].textContent===''){
+                            allRows[rowCoordinate-1][cellRowCoordinate].style.backgroundColor = 'green';
+                        }
+                        if(allRows[rowCoordinate-1][cellRowCoordinate+1].textContent===''){
+                            allRows[rowCoordinate-1][cellRowCoordinate+1].style.backgroundColor = 'green';
+                        }
+                    }
+                    else{
+                        if(allRows[rowCoordinate+1][cellRowCoordinate].textContent===''){
+                            allRows[rowCoordinate+1][cellRowCoordinate].style.backgroundColor = 'green';
+                        }
+                        if(allRows[rowCoordinate-1][cellRowCoordinate].textContent===''){
+                            allRows[rowCoordinate-1][cellRowCoordinate].style.backgroundColor = 'green';
+                        }
+                    }
+                }
+            }
+            else if(rowCoordinate === 0){
+                if(cellRowCoordinate !== 3){
+                    if(allRows[rowCoordinate+1][cellRowCoordinate+1].textContent===''){
+                        allRows[rowCoordinate+1][cellRowCoordinate+1].style.backgroundColor = 'green';
+                    }
+                }
+                else{
+                    if(allRows[rowCoordinate+1][cellRowCoordinate].textContent === ''){
+                        allRows[rowCoordinate+1][cellRowCoordinate].style.backgroundColor = 'green';
+                    }
+                }
+            }
+            else if(rowCoordinate === 7){
+                if(cellRowCoordinate !== 0){
+                    if(allRows[rowCoordinate-1][cellRowCoordinate+1].textContent===''){
+                        allRows[rowCoordinate-1][cellRowCoordinate+1].style.backgroundColor = 'green';
+                    }
+                }
+                else{
+                    if(allRows[rowCoordinate-1][cellRowCoordinate].textContent===''){
+                        allRows[rowCoordinate-1][cellRowCoordinate].style.backgroundColor = 'green';
+                    }
+                }
+            }
+        }
         isPieceChoosen = true;
     }   
 }
@@ -243,8 +318,6 @@ function movement(event){
         const cell = event.target;
         rowCoordinate = Number(cell.id.slice(1,2))
         cellRowCoordinate = Number(cell.id.slice(2))
-        console.log(cell);
-        console.log(rowCoordinate, cellRowCoordinate);
         if(isPieceChoosen){
             if (cell.textContent === '⚫' || cell.textContent === '🔴'){
                 choosed = cell.textContent;
@@ -308,14 +381,14 @@ function winnerFinder(){
 //Reset button
 function resetGame(){
     const defaultboard = [
-        ['🔴','🔴','🔴','🔴'],
+        ['','','','⬛'],
         ['','','',''],
         ['','','',''], 
+        ['','⬛','',''],
         ['','','',''],
         ['','','',''],
         ['','','',''],
-        ['','','',''],
-        ['','','',''],
+        ['⬛','','',''],
     ];
     for(let i = 0;i<4;i++){
         board[0][i]=defaultboard[0][i];
