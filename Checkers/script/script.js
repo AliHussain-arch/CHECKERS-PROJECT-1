@@ -615,11 +615,11 @@ function movement(event){
         console.log(`oldRowCoordinate : ${oldRowCoordinate},oldCellRowCoordinate : ${oldCellRowCoordinate}`)
         if(Math.abs(oldRowCoordinate-rowCoordinate)===2){
             console.log('capture condition occured')
-            if(rowCoordinate > oldRowCoordinate){
-                console.log(Math.abs(oldRowCoordinate - rowCoordinate)+1)
+            if((rowCoordinate-oldRowCoordinate)<0){
+                console.log('went up')
             }
             else{
-                console.log('from left to right')
+                console.log('went down')
             }
         }
         else{
