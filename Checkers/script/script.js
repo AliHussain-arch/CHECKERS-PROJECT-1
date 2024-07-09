@@ -22,12 +22,13 @@ const row0 = document.querySelector('#row0'),
 const allRows = [row0Cells,row1Cells,row2Cells,row3Cells,row4Cells,row5Cells,row6Cells,row7Cells]
 const board = [
     ['🔴','🔴','🔴','🔴'],
-    ['🔴','🔴','🔴','🔴'],
-    ['🔴','⚫','🔴','🔴'],
-    ['','','','⚫'],
+    ['🔴','🔴','⚫','🔴'],
+    ['🔴','','🔴','🔴'],
     ['','','',''],
-    ['⚫','','','⚫'],
+    
+    ['⚫','','🔴','⚫'],
     ['⚫','⚫','⚫','⚫'],
+    ['','','',''],
     ['⚫','⚫','⚫','⚫'],
 ];
 
@@ -614,13 +615,57 @@ function movement(event){
         console.log(`rowCoordinate : ${rowCoordinate},cellRowCoordinate : ${cellRowCoordinate}`)
         console.log(`oldRowCoordinate : ${oldRowCoordinate},oldCellRowCoordinate : ${oldCellRowCoordinate}`)
         if(Math.abs(oldRowCoordinate-rowCoordinate)===2){
-            console.log('capture condition occured')
             if((rowCoordinate-oldRowCoordinate)<0){
-                console.log('went up')
+                if((cellRowCoordinate - oldCellRowCoordinate) < 0){
+                    console.log('went up left')
+                    if(rowCoordinate===0 || rowCoordinate===2 || rowCoordinate===4 || rowCoordinate===6){
+                        console.log(`Target row ${rowCoordinate+1} Target cell ${cellRowCoordinate+1}`)
+                        targetid = `c${rowCoordinate+1}${cellRowCoordinate+1}`;
+                    }
+                    else if(rowCoordinate===1 || rowCoordinate===3 || rowCoordinate===5 || rowCoordinate===7){
+                        console.log(`Target row ${rowCoordinate+1} Target cell ${cellRowCoordinate}`)
+                        targetid = `c${rowCoordinate+1}${cellRowCoordinate}`;
+                    }
+                }
+                else{
+                    console.log('went up right')
+                    if(rowCoordinate===0 || rowCoordinate===2 || rowCoordinate===4 || rowCoordinate===6){
+                        console.log(`Target row ${rowCoordinate+1} Target cell ${cellRowCoordinate}`)
+                        targetid = `c${rowCoordinate+1}${cellRowCoordinate}`;
+                    }
+                    else if(rowCoordinate===1 || rowCoordinate===3 || rowCoordinate===5 || rowCoordinate===7){
+                        console.log(`Target row ${rowCoordinate+1} Target cell ${cellRowCoordinate-1}`)
+                        targetid = `c${rowCoordinate+1}${cellRowCoordinate-1}`;
+                    }
+                }
             }
             else{
-                console.log('went down')
+                if((cellRowCoordinate - oldCellRowCoordinate) < 0){
+                    console.log('went down left')
+                    if(rowCoordinate===0 || rowCoordinate===2 || rowCoordinate===4 || rowCoordinate===6){
+                        console.log(`Target row ${rowCoordinate-1} Target cell ${cellRowCoordinate+1}`)
+                        targetid = `c${rowCoordinate-1}${cellRowCoordinate+1}`;
+                    }
+                    else if(rowCoordinate===1 || rowCoordinate===3 || rowCoordinate===5 || rowCoordinate===7){
+                        console.log(`Target row ${rowCoordinate-1} Target cell ${cellRowCoordinate}`)
+                        targetid = `c${rowCoordinate-1}${cellRowCoordinate}`;
+                    }
+                }
+                else{
+                    console.log('went down right')
+                    if(rowCoordinate===0 || rowCoordinate===2 || rowCoordinate===4 || rowCoordinate===6){
+                        console.log(`Target row ${rowCoordinate-1} Target cell ${cellRowCoordinate}`)
+                        targetid = `c${rowCoordinate-1}${cellRowCoordinate}`;
+                    }
+                    else if(rowCoordinate===1 || rowCoordinate===3 || rowCoordinate===5 || rowCoordinate===7){
+                        console.log(`Target row ${rowCoordinate-1} Target cell ${cellRowCoordinate-1}`)
+                        targetid = `c${rowCoordinate-1}${cellRowCoordinate-1}`;
+                    }
+                    
+                }
             }
+            let target = document.getElementById(`#${targetid}`);
+                console.log(targetid);
         }
         else{
             console.log('no capture condition')
@@ -674,13 +719,13 @@ function winnerFinder(){
 function resetGame(){
     const defaultboard = [
         ['','','',''],
-        ['','','🔴','🔴'],
-        ['','','',''],
-        ['','🔴','','🔴'], 
         ['','','',''],
         ['','','',''],
-        ['','🔴','🔴',''],
-        ['⬛','','⬛',''],
+        ['','','',''], 
+        ['','','',''],
+        ['','','',''],
+        ['','🟥','',''],
+        ['','','⬛',''],
     ];
     for(let i = 0;i<4;i++){
         board[0][i]=defaultboard[0][i];
