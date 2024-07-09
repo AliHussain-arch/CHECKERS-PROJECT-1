@@ -5,13 +5,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" href="stylesheet/stylesheet.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap" rel="stylesheet">
     <script defer src="script/script.js"></script>
 </head>
 <body>
+
 <div>
     <div>
-        <h1>CHECKERS</h1>
-        <h2 id="message">Click</h2>
+        <h2 id="message"><span id="heading">CHECKERS</span><br>CHOOSE A PIECE TO MOVE</h2>
     </div>
     <div id="board">
         <table id="boardtable">
@@ -100,6 +101,17 @@
     <div id="resetButtonDiv">
         <button id="resetButton">RESET</button>
     </div>
+</div>
+<div id="instructions">  
+    <div id="instructionHeading">Instructions</div>
+<ul>
+    <li>Objective: Capture all opponent's pieces or block their moves.</li>
+    <li>Setup: Use an 8x8 board with 12 pieces each.</li>
+    <li>Starting: Black moves first.</li>
+    <li>Movement: Pieces move diagonally forward. Jump over and capture opponent's pieces.</li>
+    <li>Kinging: Pieces reach the opposite end to become kings.</li>
+    <li>Winning: Capture all opponent's pieces or block their moves to win.</li>
+</ul>    
 </div>
 
 </body>

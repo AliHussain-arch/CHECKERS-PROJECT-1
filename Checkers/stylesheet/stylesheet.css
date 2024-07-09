@@ -1,50 +1,106 @@
-html,body{
+body {
+    margin: 0;
+    border: 0;
+    padding: 3rem;
+    height: 100vh;
     display: flex;
+    justify-content: flex-end;
     align-items: center;
-    justify-content: center;
     text-align: center;
+    background: linear-gradient(135deg, #006400 25%, #003300 75%);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    height: 80%;
 }
-table{
+
+table {
     border-collapse: collapse;
-    border: 1rem;
+    width: 80%; 
+    height: 1rem;
+    margin: 20px auto; 
 }
-td{
-    border: solid black;
+
+td {
+    border: 3px solid black; 
     text-align: center;
     height: 4rem;
-    min-height: 4rem;
     width: 4rem;
-    min-width: 4rem;
+    background-color: white;
+    color: #060606;
 }
-.active{
+li{
+    text-align: left;
+}
+
+.active {
     font-size: 3rem;
     color: white;
     background-color: grey;
 }
-.empty{
+
+.empty {
     background-color: white;
-    color: rgb(6, 6, 6);
+    color: #060606;
 }
-.hoverOn:hover{
+
+.hoverOn:hover {
     background-color: rgb(186, 55, 66);
 }
+
 .clicked {
     background-color: green;
 }
-#resetButtonDiv{
+
+#resetButtonDiv {
     text-align: center;
     padding: 1rem;
 }
-#resetButton{
+
+#resetButton {
     font-size: 2rem;
     background-color: white;
 }
-#resetButton:hover{
+
+#resetButton:hover {
     color: red;
 }
-#message{
-    font-size : 2rem;
+
+#message {
+    font-size: 2rem;
+    color: white;
 }
 
+#heading {
+    font-size: 3rem;
+    color: white;
+}
+
+#instructions {
+    background-color: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); 
+    width: 25%; 
+    margin: 5rem;
+    text-align: left; 
+    font-family: 'Roboto', sans-serif; 
+}
+
+#instructions ul {
+    padding-left: 20px; 
+}
+
+#instructions li {
+    margin-bottom: 10px; 
+    font-size: 1.2rem; 
+    line-height: 1.6; 
+    color: #333; 
+}
+#instructionHeading{
+    text-align: center;
+    font-weight: bolder;
+    font-size: 2rem;
+}
 
 

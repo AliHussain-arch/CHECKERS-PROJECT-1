@@ -596,6 +596,8 @@ function piecesHover(event) {
 // Movement function
 let choosed = '';
 let choosedcoordinate = ''
+let targetRowCoordinate = null;
+let cellRowCoordinate = null;
 function movement(event){
     if(isPieceChoosen){
         const cell = event.target;
@@ -621,7 +623,6 @@ function movement(event){
         if(Math.abs(oldRowCoordinate-rowCoordinate)===2){
             if((rowCoordinate-oldRowCoordinate)<0){
                 if((cellRowCoordinate - oldCellRowCoordinate) < 0){
-                    console.log('went up left')
                     if(rowCoordinate===0 || rowCoordinate===2 || rowCoordinate===4 || rowCoordinate===6){
                         console.log(`Target row ${rowCoordinate+1} Target cell ${cellRowCoordinate+1}`)
                         targetid = `c${rowCoordinate+1}${cellRowCoordinate+1}`;
@@ -632,7 +633,6 @@ function movement(event){
                     }
                 }
                 else{
-                    console.log('went up right')
                     if(rowCoordinate===0 || rowCoordinate===2 || rowCoordinate===4 || rowCoordinate===6){
                         console.log(`Target row ${rowCoordinate+1} Target cell ${cellRowCoordinate}`)
                         targetid = `c${rowCoordinate+1}${cellRowCoordinate}`;
@@ -645,7 +645,6 @@ function movement(event){
             }
             else{
                 if((cellRowCoordinate - oldCellRowCoordinate) < 0){
-                    console.log('went down left')
                     if(rowCoordinate===0 || rowCoordinate===2 || rowCoordinate===4 || rowCoordinate===6){
                         console.log(`Target row ${rowCoordinate-1} Target cell ${cellRowCoordinate+1}`)
                         targetid = `c${rowCoordinate-1}${cellRowCoordinate+1}`;
@@ -656,14 +655,13 @@ function movement(event){
                     }
                 }
                 else{
-                    console.log('went down right')
                     if(rowCoordinate===0 || rowCoordinate===2 || rowCoordinate===4 || rowCoordinate===6){
                         console.log(`Target row ${rowCoordinate-1} Target cell ${cellRowCoordinate}`)
                         targetid = `c${rowCoordinate-1}${cellRowCoordinate}`;
                     }
                     else if(rowCoordinate===1 || rowCoordinate===3 || rowCoordinate===5 || rowCoordinate===7){
-                        console.log(`Target row ${rowCoordinate-1} Target cell ${cellRowCoordinate}`)
-                        targetid = `c${rowCoordinate-1}${cellRowCoordinate}`;
+                        console.log(`Target row ${rowCoordinate-1} Target cell ${cellRowCoordinate-1}`)
+                        targetid = `c${rowCoordinate-1}${cellRowCoordinate-1}`;
                     }
                     
                 }
@@ -671,7 +669,11 @@ function movement(event){
         }
         }
     winnerFinder();
-    allRows[Number(targetid.slice(1,2))][Number(targetid.slice(2))].textContent = '';
+    targetRowCoordinate = Number(targetid.slice(1,2));
+    cellRowCoordinate = Number(targetid.slice(2));
+    allRows[targetRowCoordinate][cellRowCoordinate].textContent = '';
+    targetRowCoordinate = null;
+    cellRowCoordinate = null;
     
 }
 
