@@ -93,7 +93,7 @@ function legalMoves(event){
                         }
                         
                     }
-                    else if(allRows[rowCoordinate-1][cellRowCoordinate].textContent === '🔴' || allRows[rowCoordinate-1][cellRowCoordinate+1].textContent === '🔴'){
+                    if(allRows[rowCoordinate-1][cellRowCoordinate].textContent === '🔴' || allRows[rowCoordinate-1][cellRowCoordinate+1].textContent === '🔴'){
                         if(allRows[rowCoordinate-2][cellRowCoordinate+1].textContent === ''){
                             allRows[rowCoordinate-2][cellRowCoordinate+1].style.backgroundColor = 'green';
                         }
