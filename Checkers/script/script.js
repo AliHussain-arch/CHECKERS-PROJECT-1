@@ -108,6 +108,7 @@ function legalMoves(event){
 
         }
             else if(rowCoordinate%2 !==0){
+            // SPLIT 0 AND 3 
                 if(cellRowCoordinate === 0 || cellRowCoordinate === 3){
                     if(allRows[rowCoordinate-1][cellRowCoordinate].textContent === ''){
                         allRows[rowCoordinate-1][cellRowCoordinate].style.backgroundColor = 'green';
@@ -123,6 +124,9 @@ function legalMoves(event){
                         }
                         else if(cellRowCoordinate===3){
                             if(allRows[rowCoordinate-2][cellRowCoordinate-1].textContent === ''){
+                                allRows[rowCoordinate-2][cellRowCoordinate-1].style.backgroundColor = 'green';
+                            }
+                            else if(allRows[rowCoordinate-2][cellRowCoordinate-1].textContent === '🔴' || allRows[rowCoordinate-2][cellRowCoordinate-1].textContent === '🟥'){
                                 allRows[rowCoordinate-2][cellRowCoordinate-1].style.backgroundColor = 'green';
                             }
                         }
@@ -160,14 +164,14 @@ function legalMoves(event){
                         if(allRows[rowCoordinate+1][cellRowCoordinate+1].textContent === ''){
                             allRows[rowCoordinate+1][cellRowCoordinate+1].style.backgroundColor = 'green';
                         }
-                        if(allRows[rowCoordinate+1][cellRowCoordinate+1].textContent === '⚫'){
+                        else if(allRows[rowCoordinate+1][cellRowCoordinate+1].textContent === '⚫' || allRows[rowCoordinate+1][cellRowCoordinate+1].textContent === '⬛'){
                             if(allRows[rowCoordinate+2][cellRowCoordinate+1].textContent === ''){
                                 allRows[rowCoordinate+2][cellRowCoordinate+1].style.backgroundColor = 'green';
                             }
                         }
                     }
                     if(cellRowCoordinate === 3){
-                        if(allRows[rowCoordinate+1][cellRowCoordinate].textContent === '⚫'){
+                        if(allRows[rowCoordinate+1][cellRowCoordinate].textContent === '⚫' || allRows[rowCoordinate+1][cellRowCoordinate].textContent === '⬛'){
                             if(allRows[rowCoordinate+2][cellRowCoordinate-1].textContent === ''){
                                 allRows[rowCoordinate+2][cellRowCoordinate-1].style.backgroundColor = 'green';
                             }
@@ -178,15 +182,15 @@ function legalMoves(event){
                     if(allRows[rowCoordinate+1][cellRowCoordinate].textContent === ''){
                         allRows[rowCoordinate+1][cellRowCoordinate].style.backgroundColor = 'green';
                     }
-                    if(allRows[rowCoordinate+1][cellRowCoordinate+1].textContent === ''){
-                        allRows[rowCoordinate+1][cellRowCoordinate+1].style.backgroundColor = 'green';
-                    }
-                    if(allRows[rowCoordinate+1][cellRowCoordinate].textContent === '⚫'){
+                    else if(allRows[rowCoordinate+1][cellRowCoordinate].textContent === '⚫' || allRows[rowCoordinate+1][cellRowCoordinate].textContent === '⬛'){
                         if(allRows[rowCoordinate+2][cellRowCoordinate-1].textContent === ''){
                             allRows[rowCoordinate+2][cellRowCoordinate-1].style.backgroundColor = 'green';
                         }
                     }
-                    if(allRows[rowCoordinate+1][cellRowCoordinate+1].textContent === '⚫'){
+                    if(allRows[rowCoordinate+1][cellRowCoordinate+1].textContent === ''){
+                        allRows[rowCoordinate+1][cellRowCoordinate+1].style.backgroundColor = 'green';
+                    }
+                    else if(allRows[rowCoordinate+1][cellRowCoordinate+1].textContent === '⚫' || allRows[rowCoordinate+1][cellRowCoordinate+1].textContent === '⬛'){
                         if(allRows[rowCoordinate+2][cellRowCoordinate+1].textContent === ''){
                             allRows[rowCoordinate+2][cellRowCoordinate+1].style.backgroundColor = 'green';
                         }
@@ -194,13 +198,23 @@ function legalMoves(event){
                 }
             }
             else if(rowCoordinate%2 !== 0){
-                if(cellRowCoordinate === 0 || cellRowCoordinate === 3){
+                if(cellRowCoordinate === 0){
                     if(allRows[rowCoordinate+1][cellRowCoordinate].textContent === ''){
                         allRows[rowCoordinate+1][cellRowCoordinate].style.backgroundColor = 'green';
+                    }
+                    else if(allRows[rowCoordinate+1][cellRowCoordinate].textContent === '⚫' || allRows[rowCoordinate+1][cellRowCoordinate].textContent === '⬛'){
+                        if(allRows[rowCoordinate+2][cellRowCoordinate+1].textContent === ''){
+                            allRows[rowCoordinate+2][cellRowCoordinate+1].style.backgroundColor = 'green';
+                        }
                     }
                     if(cellRowCoordinate === 3){
                         if(allRows[rowCoordinate+1][cellRowCoordinate-1].textContent === ''){
                             allRows[rowCoordinate+1][cellRowCoordinate-1].style.backgroundColor = 'green';
+                        }
+                        else if(allRows[rowCoordinate+1][cellRowCoordinate-1].textContent === '⚫' || allRows[rowCoordinate+1][cellRowCoordinate-1].textContent === '⬛'){
+                            if(allRows[rowCoordinate+2][cellRowCoordinate-1].textContent === ''){
+                                allRows[rowCoordinate+2][cellRowCoordinate-1].style.backgroundColor = 'green';
+                            }
                         }
                     }
                 }
