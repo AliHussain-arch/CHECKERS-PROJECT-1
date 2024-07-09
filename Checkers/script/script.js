@@ -594,9 +594,10 @@ function movement(event){
         const cell = event.target;
         rowCoordinate = Number(cell.id.slice(1,2))
         cellRowCoordinate = Number(cell.id.slice(2))
-        console.log(rowCoordinate,cellRowCoordinate)
         if(isPieceChoosen){
             if (cell.textContent === '⚫' || cell.textContent === '🔴' || cell.textContent === '⬛' || cell.textContent === '🟥'){
+                oldRowCoordinate = rowCoordinate;
+                oldCellRowCoordinate = cellRowCoordinate;
                 choosed = cell.textContent;
                 choosedcoordinate = document.getElementById(cell.id);
             }
@@ -609,6 +610,20 @@ function movement(event){
                 kingCreator();
                 isPieceChoosen = false;
             }
+        }
+        console.log(`rowCoordinate : ${rowCoordinate},cellRowCoordinate : ${cellRowCoordinate}`)
+        console.log(`oldRowCoordinate : ${oldRowCoordinate},oldCellRowCoordinate : ${oldCellRowCoordinate}`)
+        if(Math.abs(oldRowCoordinate-rowCoordinate)===2){
+            console.log('capture condition occured')
+            if(rowCoordinate > oldRowCoordinate){
+                console.log(Math.abs(oldRowCoordinate - rowCoordinate)+1)
+            }
+            else{
+                console.log('from left to right')
+            }
+        }
+        else{
+            console.log('no capture condition')
         }
     }
     winnerFinder();
