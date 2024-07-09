@@ -19,7 +19,7 @@ const row0 = document.querySelector('#row0'),
       row6Cells = row6.querySelectorAll('td.active'),
       row7 = document.querySelector('#row7'),
       row7Cells = row7.querySelectorAll('td.active');
-const allRows = [row0Cells,row1Cells,row2Cells,row3Cells,row4Cells,row5Cells,row6Cells,row7Cells]
+const allRows = [row0Cells,row1Cells,row2Cells,row3Cells,row4Cells,row5Cells,row6Cells,row7Cells];
 const board = [
     ['🔴','🔴','🔴','🔴'],
     ['🔴','🔴','⚫','🔴'],
@@ -611,8 +611,6 @@ function movement(event){
                 isPieceChoosen = false;
             }
         }
-        console.log(`rowCoordinate : ${rowCoordinate},cellRowCoordinate : ${cellRowCoordinate}`)
-        console.log(`oldRowCoordinate : ${oldRowCoordinate},oldCellRowCoordinate : ${oldCellRowCoordinate}`)
         if(Math.abs(oldRowCoordinate-rowCoordinate)===2){
             if((rowCoordinate-oldRowCoordinate)<0){
                 if((cellRowCoordinate - oldCellRowCoordinate) < 0){
@@ -663,11 +661,11 @@ function movement(event){
                     
                 }
             }
-            let target = document.getElementById(`#${targetid}`);
-                console.log(target);
         }
-    }
+        }
     winnerFinder();
+    allRows[Number(targetid.slice(1,2))][Number(targetid.slice(2))].textContent = '';
+    
 }
 
 // King Pieces creator
