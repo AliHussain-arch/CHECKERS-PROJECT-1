@@ -105,28 +105,38 @@ function legalMoves(event){
 
         }
             else if(rowCoordinate%2 !==0){
-            // SPLIT 0 AND 3 
-                if(cellRowCoordinate === 0 || cellRowCoordinate === 3){
+                if(cellRowCoordinate === 0 ){
                     if(allRows[rowCoordinate-1][cellRowCoordinate].textContent === ''){
                         allRows[rowCoordinate-1][cellRowCoordinate].style.backgroundColor = 'green';
                     }
-                    else if(cellRowCoordinate === 3 && allRows[rowCoordinate-1][cellRowCoordinate-1].textContent === ''){
-                        allRows[rowCoordinate-1][cellRowCoordinate-1].style.backgroundColor = 'green';
-                    }
-                    else if(allRows[rowCoordinate-1][cellRowCoordinate].textContent === '🔴' || allRows[rowCoordinate-1][cellRowCoordinate-1].textContent === '🔴' || allRows[rowCoordinate-1][cellRowCoordinate].textContent === '🟥' || allRows[rowCoordinate-1][cellRowCoordinate-1].textContent === '🟥'){
-                        if(cellRowCoordinate===0){
+                    else if(allRows[rowCoordinate-1][cellRowCoordinate].textContent === '🔴' || allRows[rowCoordinate-1][cellRowCoordinate].textContent === '🟥'){
                             if(allRows[rowCoordinate-2][cellRowCoordinate+1].textContent === ''){
                                 allRows[rowCoordinate-2][cellRowCoordinate+1].style.backgroundColor = 'green';
                             }
+                    }
+                }
+                else if(cellRowCoordinate === 3){
+                    if(allRows[rowCoordinate-1][cellRowCoordinate].textContent === ''){
+                        allRows[rowCoordinate-1][cellRowCoordinate].style.backgroundColor = 'green';
+                    }
+                    else if(allRows[rowCoordinate-1][cellRowCoordinate].textContent === '🔴' || allRows[rowCoordinate-1][cellRowCoordinate].textContent === '🟥'){
+                        if(allRows[rowCoordinate-2][cellRowCoordinate-1].textContent === ''){
+                            allRows[rowCoordinate-2][cellRowCoordinate-1].style.backgroundColor = 'green';
                         }
-                        else if(cellRowCoordinate===3){
+                        else if(allRows[rowCoordinate-2][cellRowCoordinate-1].textContent === '🔴' || allRows[rowCoordinate-2][cellRowCoordinate-1].textContent === '🟥'){
+                            allRows[rowCoordinate-2][cellRowCoordinate-1].style.backgroundColor = 'green';
+                        }
+                    }
+                    if(allRows[rowCoordinate-1][cellRowCoordinate-1].textContent === ''){
+                        allRows[rowCoordinate-1][cellRowCoordinate-1].style.backgroundColor = 'green';
+                    }
+                    else if(allRows[rowCoordinate-1][cellRowCoordinate].textContent === '🔴' || allRows[rowCoordinate-1][cellRowCoordinate-1].textContent === '🔴' || allRows[rowCoordinate-1][cellRowCoordinate].textContent === '🟥' || allRows[rowCoordinate-1][cellRowCoordinate-1].textContent === '🟥'){
                             if(allRows[rowCoordinate-2][cellRowCoordinate-1].textContent === ''){
                                 allRows[rowCoordinate-2][cellRowCoordinate-1].style.backgroundColor = 'green';
                             }
                             else if(allRows[rowCoordinate-2][cellRowCoordinate-1].textContent === '🔴' || allRows[rowCoordinate-2][cellRowCoordinate-1].textContent === '🟥'){
                                 allRows[rowCoordinate-2][cellRowCoordinate-1].style.backgroundColor = 'green';
                             }
-                        }
                     }
                 }
                 else if(cellRowCoordinate === 1 || cellRowCoordinate === 2){
@@ -734,15 +744,16 @@ function resetGame(){
     rendering();
     isPieceChoosen = false;
 }
-resetButton.addEventListener('click',resetGame);
+
 
 // Event listners collections
 active.forEach(element => {
     element.addEventListener('click', legalMoves);
     element.addEventListener('click',movement);
-    element.addEventListener('mouseover', piecesHover);
-    element.addEventListener('mouseout', piecesHover);
+    element.addEventListener('mouseenter', piecesHover);
+    element.addEventListener('mouseleave', piecesHover);
 });
+resetButton.addEventListener('click',resetGame);
 
 
 
