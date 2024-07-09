@@ -25,9 +25,8 @@ const board = [
     ['🔴','🔴','⚫','🔴'],
     ['🔴','','🔴','🔴'],
     ['','','',''],
-    
-    ['⚫','','🔴','⚫'],
-    ['⚫','⚫','⚫','⚫'],
+    ['⚫','','','⚫'],
+    ['⚫','⚫','','⚫'],
     ['','','',''],
     ['⚫','⚫','⚫','⚫'],
 ];
@@ -658,17 +657,14 @@ function movement(event){
                         targetid = `c${rowCoordinate-1}${cellRowCoordinate}`;
                     }
                     else if(rowCoordinate===1 || rowCoordinate===3 || rowCoordinate===5 || rowCoordinate===7){
-                        console.log(`Target row ${rowCoordinate-1} Target cell ${cellRowCoordinate-1}`)
-                        targetid = `c${rowCoordinate-1}${cellRowCoordinate-1}`;
+                        console.log(`Target row ${rowCoordinate-1} Target cell ${cellRowCoordinate}`)
+                        targetid = `c${rowCoordinate-1}${cellRowCoordinate}`;
                     }
                     
                 }
             }
             let target = document.getElementById(`#${targetid}`);
-                console.log(targetid);
-        }
-        else{
-            console.log('no capture condition')
+                console.log(target);
         }
     }
     winnerFinder();
