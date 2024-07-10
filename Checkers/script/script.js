@@ -724,10 +724,16 @@ function winnerFinder(){
     blackScore.textContent = 12 - winnerObject.redPiecesCount;
     redScore.textContent = 12 - winnerObject.blackPiecesCount;
     if(winnerObject.blackPiecesCount === 0){
-        message.textContent = 'RED WON !'
+        message.textContent = 'RED WON !';
+        message.style.backgroundColor = 'white';
+        message.style.color = 'red';
+        message.style.border = 'solid black';
     }
     else if(winnerObject.redPiecesCount === 0){
-        message.textContent = 'BLACK WON !'
+        message.textContent = 'BLACK WON !';
+        message.style.backgroundColor = 'white';
+        message.style.color = 'black';
+        message.style.border = 'solid black';
     }
 }
 

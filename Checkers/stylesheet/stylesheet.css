@@ -1,9 +1,8 @@
 body {
     margin: 0;
     border: 0;
-    padding: 3rem;
     display: flex;
-    justify-content: flex-end;
+    justify-content: center;
     align-items: center;
     text-align: center;
     background: linear-gradient(135deg, #006400 25%, #003300 75%);
@@ -16,6 +15,7 @@ table {
     border-collapse: collapse;
     height: 1rem;
     margin: 20px auto;
+    border: 10px solid black;
 }
 table:hover{
     cursor: pointer;
@@ -102,7 +102,7 @@ li{
 #instructionHeading{
     text-align: center;
     font-weight: bolder;
-    font-size: 2rem;
+    font-size: 1.5rem;
 }
 #scoreBoard {
     display: flex;
@@ -138,6 +138,16 @@ li{
     background-color: red;
     color: white;
 }
+#customBorder {
+    background-image: url('/Images/border.png');
+    background-repeat: no-repeat;
+    background-size: contain;
+    padding: 2.9rem;
+    background-position: center;
+
+   
+}
+
 
 
 
