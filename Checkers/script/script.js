@@ -745,6 +745,8 @@ function resetGame(){
     });
     rendering();
     isPieceChoosen = false;
+    targetRowCoordinate = null;
+    cellRowCoordinate = null;
 }
 
 

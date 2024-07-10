@@ -20,7 +20,9 @@ table {
     height: 1rem;
     margin: 20px auto; 
 }
-
+table:hover{
+    cursor: pointer;
+}
 td {
     border: 3px solid black; 
     text-align: center;
