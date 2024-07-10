@@ -1,4 +1,7 @@
-const message = document.querySelector('#message')
+const body = document.querySelector('body');
+const message = document.querySelector('#message');
+const blackScore = document.querySelector('#blackScore');
+const redScore = document.querySelector('#redScore');
 const active = document.querySelectorAll(".active");
 const userBoard = document.querySelector("#boardtable");
 const resetButton = document.querySelector('#resetButton');
@@ -575,7 +578,7 @@ function legalMoves(event){
             }
         }
         isPieceChoosen = true;
-    }   
+    } 
 }
 
 // Highlighting on hover mechanism
@@ -593,10 +596,11 @@ function piecesHover(event) {
 }
 
 // Movement function
+
 let choosed = '';
 let choosedcoordinate = ''
-let targetRowCoordinate = null;
-let cellRowCoordinate = null;
+let targetRowCoordinate ;
+let cellRowCoordinate ;
 function movement(event){
     if(isPieceChoosen){
         const cell = event.target;
@@ -623,54 +627,66 @@ function movement(event){
             if((rowCoordinate-oldRowCoordinate)<0){
                 if((cellRowCoordinate - oldCellRowCoordinate) < 0){
                     if(rowCoordinate===0 || rowCoordinate===2 || rowCoordinate===4 || rowCoordinate===6){
-                        console.log(`Target row ${rowCoordinate+1} Target cell ${cellRowCoordinate+1}`)
                         targetid = `c${rowCoordinate+1}${cellRowCoordinate+1}`;
+                        targetRowCoordinate = Number(targetid.slice(1,2));
+                        cellRowCoordinate = Number(targetid.slice(2));
+                        allRows[targetRowCoordinate][cellRowCoordinate].textContent = '';
                     }
                     else if(rowCoordinate===1 || rowCoordinate===3 || rowCoordinate===5 || rowCoordinate===7){
-                        console.log(`Target row ${rowCoordinate+1} Target cell ${cellRowCoordinate}`)
                         targetid = `c${rowCoordinate+1}${cellRowCoordinate}`;
+                        targetRowCoordinate = Number(targetid.slice(1,2));
+                        cellRowCoordinate = Number(targetid.slice(2));
+                        allRows[targetRowCoordinate][cellRowCoordinate].textContent = '';
                     }
                 }
                 else{
                     if(rowCoordinate===0 || rowCoordinate===2 || rowCoordinate===4 || rowCoordinate===6){
-                        console.log(`Target row ${rowCoordinate+1} Target cell ${cellRowCoordinate}`)
                         targetid = `c${rowCoordinate+1}${cellRowCoordinate}`;
+                        targetRowCoordinate = Number(targetid.slice(1,2));
+                        cellRowCoordinate = Number(targetid.slice(2));
+                        allRows[targetRowCoordinate][cellRowCoordinate].textContent = '';
                     }
                     else if(rowCoordinate===1 || rowCoordinate===3 || rowCoordinate===5 || rowCoordinate===7){
-                        console.log(`Target row ${rowCoordinate+1} Target cell ${cellRowCoordinate-1}`)
                         targetid = `c${rowCoordinate+1}${cellRowCoordinate-1}`;
+                        targetRowCoordinate = Number(targetid.slice(1,2));
+                        cellRowCoordinate = Number(targetid.slice(2));
+                        allRows[targetRowCoordinate][cellRowCoordinate].textContent = '';
                     }
                 }
             }
             else{
                 if((cellRowCoordinate - oldCellRowCoordinate) < 0){
                     if(rowCoordinate===0 || rowCoordinate===2 || rowCoordinate===4 || rowCoordinate===6){
-                        console.log(`Target row ${rowCoordinate-1} Target cell ${cellRowCoordinate+1}`)
                         targetid = `c${rowCoordinate-1}${cellRowCoordinate+1}`;
+                        targetRowCoordinate = Number(targetid.slice(1,2));
+                        cellRowCoordinate = Number(targetid.slice(2));
+                        allRows[targetRowCoordinate][cellRowCoordinate].textContent = '';
                     }
                     else if(rowCoordinate===1 || rowCoordinate===3 || rowCoordinate===5 || rowCoordinate===7){
-                        console.log(`Target row ${rowCoordinate-1} Target cell ${cellRowCoordinate}`)
                         targetid = `c${rowCoordinate-1}${cellRowCoordinate}`;
+                        targetRowCoordinate = Number(targetid.slice(1,2));
+                        cellRowCoordinate = Number(targetid.slice(2));
+                        allRows[targetRowCoordinate][cellRowCoordinate].textContent = '';
                     }
                 }
                 else{
                     if(rowCoordinate===0 || rowCoordinate===2 || rowCoordinate===4 || rowCoordinate===6){
-                        console.log(`Target row ${rowCoordinate-1} Target cell ${cellRowCoordinate}`)
                         targetid = `c${rowCoordinate-1}${cellRowCoordinate}`;
+                        targetRowCoordinate = Number(targetid.slice(1,2));
+                        cellRowCoordinate = Number(targetid.slice(2));
+                        allRows[targetRowCoordinate][cellRowCoordinate].textContent = '';
                     }
                     else if(rowCoordinate===1 || rowCoordinate===3 || rowCoordinate===5 || rowCoordinate===7){
-                        console.log(`Target row ${rowCoordinate-1} Target cell ${cellRowCoordinate-1}`)
                         targetid = `c${rowCoordinate-1}${cellRowCoordinate-1}`;
+                        targetRowCoordinate = Number(targetid.slice(1,2));
+                        cellRowCoordinate = Number(targetid.slice(2));
+                        allRows[targetRowCoordinate][cellRowCoordinate].textContent = '';
                     }
                     
                 }
             }
         }
         }
-    winnerFinder();
-    targetRowCoordinate = Number(targetid.slice(1,2));
-    cellRowCoordinate = Number(targetid.slice(2));
-    allRows[targetRowCoordinate][cellRowCoordinate].textContent = '';
     targetRowCoordinate = null;
     cellRowCoordinate = null;
     
@@ -691,12 +707,9 @@ function kingCreator(){
 }
 
 // Winner finder
-let winnerObject = {
-    blackPiecesCount : 0,
-    redPiecesCount : 0,
-};
 function winnerFinder(){
-    winnerObject = {
+
+    let winnerObject = {
         blackPiecesCount : 0,
         redPiecesCount : 0,
     };
@@ -708,13 +721,14 @@ function winnerFinder(){
             winnerObject.redPiecesCount ++;
         }
     });
+    blackScore.textContent = 12 - winnerObject.redPiecesCount;
+    redScore.textContent = 12 - winnerObject.blackPiecesCount;
     if(winnerObject.blackPiecesCount === 0){
         message.textContent = 'RED WON !'
     }
     else if(winnerObject.redPiecesCount === 0){
         message.textContent = 'BLACK WON !'
     }
-    
 }
 
 //Reset button
@@ -743,6 +757,8 @@ function resetGame(){
         element.style.backgroundColor = 'grey';
     });
     rendering();
+    blackScore.textContent = 0;
+    redScore.textContent = 0;
     isPieceChoosen = false;
     targetRowCoordinate = null;
     cellRowCoordinate = null;
@@ -757,6 +773,7 @@ active.forEach(element => {
     element.addEventListener('mouseleave', piecesHover);
 });
 resetButton.addEventListener('click',resetGame);
+body.addEventListener('mousemove',winnerFinder);
 
 
 

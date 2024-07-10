@@ -32,6 +32,7 @@ td {
 }
 li{
     text-align: left;
+    display: flex;
 }
 
 .active {
@@ -103,9 +104,41 @@ li{
     font-weight: bolder;
     font-size: 2rem;
 }
-#scoreBox{
-    float: left;
+#scoreBoard {
+    display: flex;
+    justify-content: space-around;
+    margin-top: 20px;
+    flex-direction: row;
 }
+
+#black, #red {
+    text-align: left;
+    padding: 10px;
+    border-radius: 5px;
+    display: flex;
+    flex-direction: column;
+}
+
+#black h1, #red h1 {
+    margin: 0;
+}
+
+#black span, #red span {
+    text-align: center;
+    display: block;
+    font-weight: bold;
+}
+
+#black {
+    background-color: black;
+    color: white;
+}
+
+#red {
+    background-color: red;
+    color: white;
+}
+
 
 
 
