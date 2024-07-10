@@ -12,7 +12,6 @@
 #### **User story**
 - The checkers game should accessible through the website.
 - The rules must be written clearly on the side of the board.
-- The board must say whose turn it is.
 - The user interface must be easy to use and the pieces must be easy to track.
 - The game should provide a feedback of the winner.
 - There should be a reset button to set the pieces to there default location.
