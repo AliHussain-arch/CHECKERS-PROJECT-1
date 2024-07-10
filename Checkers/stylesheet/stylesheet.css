@@ -2,7 +2,6 @@ body {
     margin: 0;
     border: 0;
     padding: 3rem;
-    height: 100vh;
     display: flex;
     justify-content: flex-end;
     align-items: center;
@@ -11,14 +10,12 @@ body {
     background-size: cover;
     background-repeat: no-repeat;
     background-attachment: fixed;
-    height: 80%;
 }
 
 table {
     border-collapse: collapse;
-    width: 80%; 
     height: 1rem;
-    margin: 20px auto; 
+    margin: 20px auto;
 }
 table:hover{
     cursor: pointer;
@@ -109,5 +106,7 @@ li{
 #scoreBox{
     float: left;
 }
+
+
 
 
