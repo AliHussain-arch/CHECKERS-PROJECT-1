@@ -61,7 +61,6 @@ function legalMoves(event){
             if (rowCoordinate === 0){
             }
             else if(rowCoordinate%2 ===0){
-                if(cellRowCoordinate === 0 || cellRowCoordinate === 3){
                     if(cellRowCoordinate === 0){
                         if(allRows[rowCoordinate-1][cellRowCoordinate+1].textContent === ''){
                             allRows[rowCoordinate-1][cellRowCoordinate+1].style.backgroundColor = 'green';
@@ -76,7 +75,7 @@ function legalMoves(event){
                         }
                         
                     }
-                    if(cellRowCoordinate === 3){
+                    else if(cellRowCoordinate === 3){
                         if(allRows[rowCoordinate-1][cellRowCoordinate].textContent === ''){
                             allRows[rowCoordinate-1][cellRowCoordinate].style.backgroundColor = 'green';
                         }
@@ -86,26 +85,25 @@ function legalMoves(event){
                                 }
                             }
                     }
-                }
-                else if(cellRowCoordinate === 1 || cellRowCoordinate === 2){
-                    
-                        if(allRows[rowCoordinate-1][cellRowCoordinate+1].textContent === ''){
-                            allRows[rowCoordinate-1][cellRowCoordinate+1].style.backgroundColor = 'green';
-                        }
-                        else if(allRows[rowCoordinate-1][cellRowCoordinate+1].textContent === '🔴'){
-                            if(allRows[rowCoordinate-2][cellRowCoordinate+1].textContent === ''){
-                                allRows[rowCoordinate-2][cellRowCoordinate+1].style.backgroundColor = 'green';
+                    else if(cellRowCoordinate === 1 || cellRowCoordinate === 2){
+                        
+                            if(allRows[rowCoordinate-1][cellRowCoordinate+1].textContent === ''){
+                                allRows[rowCoordinate-1][cellRowCoordinate+1].style.backgroundColor = 'green';
                             }
-                        }
-                        if(allRows[rowCoordinate-1][cellRowCoordinate].textContent === ''){
-                            allRows[rowCoordinate-1][cellRowCoordinate].style.backgroundColor = 'green';
-                        }
-                        else if(allRows[rowCoordinate-1][cellRowCoordinate].textContent === '🔴' ){
-                            if(allRows[rowCoordinate-2][cellRowCoordinate-1].textContent === ''){
-                                allRows[rowCoordinate-2][cellRowCoordinate-1].style.backgroundColor = 'green';
-                            } 
-                        }
-                }
+                            else if(allRows[rowCoordinate-1][cellRowCoordinate+1].textContent === '🔴'){
+                                if(allRows[rowCoordinate-2][cellRowCoordinate+1].textContent === ''){
+                                    allRows[rowCoordinate-2][cellRowCoordinate+1].style.backgroundColor = 'green';
+                                }
+                            }
+                            if(allRows[rowCoordinate-1][cellRowCoordinate].textContent === ''){
+                                allRows[rowCoordinate-1][cellRowCoordinate].style.backgroundColor = 'green';
+                            }
+                            else if(allRows[rowCoordinate-1][cellRowCoordinate].textContent === '🔴' ){
+                                if(allRows[rowCoordinate-2][cellRowCoordinate-1].textContent === ''){
+                                    allRows[rowCoordinate-2][cellRowCoordinate-1].style.backgroundColor = 'green';
+                                } 
+                            }
+                    }
 
         }
             else if(rowCoordinate%2 !==0){
@@ -122,14 +120,6 @@ function legalMoves(event){
                 else if(cellRowCoordinate === 3){
                     if(allRows[rowCoordinate-1][cellRowCoordinate].textContent === ''){
                         allRows[rowCoordinate-1][cellRowCoordinate].style.backgroundColor = 'green';
-                    }
-                    else if(allRows[rowCoordinate-1][cellRowCoordinate].textContent === '🔴' || allRows[rowCoordinate-1][cellRowCoordinate].textContent === '🟥'){
-                        if(allRows[rowCoordinate-2][cellRowCoordinate-1].textContent === ''){
-                            allRows[rowCoordinate-2][cellRowCoordinate-1].style.backgroundColor = 'green';
-                        }
-                        else if(allRows[rowCoordinate-2][cellRowCoordinate-1].textContent === '🔴' || allRows[rowCoordinate-2][cellRowCoordinate-1].textContent === '🟥'){
-                            allRows[rowCoordinate-2][cellRowCoordinate-1].style.backgroundColor = 'green';
-                        }
                     }
                     if(allRows[rowCoordinate-1][cellRowCoordinate-1].textContent === ''){
                         allRows[rowCoordinate-1][cellRowCoordinate-1].style.backgroundColor = 'green';
@@ -587,8 +577,6 @@ function legalMoves(event){
         isPieceChoosen = true;
     }   
 }
-
-// Pieces clicked mechanism
 
 // Highlighting on hover mechanism
 let hover = false;
