@@ -71,6 +71,10 @@ function legalMoves(event){
                                 allRows[rowCoordinate-2][cellRowCoordinate+1].style.backgroundColor = 'green';
                                 }
                         }
+                        if(allRows[rowCoordinate-1][cellRowCoordinate].textContent === ''){
+                            allRows[rowCoordinate-1][cellRowCoordinate].style.backgroundColor = 'green';
+                        }
+                        
                     }
                     if(cellRowCoordinate === 3){
                         if(allRows[rowCoordinate-1][cellRowCoordinate].textContent === ''){
@@ -218,15 +222,18 @@ function legalMoves(event){
                             allRows[rowCoordinate+2][cellRowCoordinate+1].style.backgroundColor = 'green';
                         }
                     }
-                    if(cellRowCoordinate === 3){
-                        if(allRows[rowCoordinate+1][cellRowCoordinate-1].textContent === ''){
-                            allRows[rowCoordinate+1][cellRowCoordinate-1].style.backgroundColor = 'green';
+                }
+                else if(cellRowCoordinate === 3){
+                    if(allRows[rowCoordinate+1][cellRowCoordinate-1].textContent === ''){
+                        allRows[rowCoordinate+1][cellRowCoordinate-1].style.backgroundColor = 'green';
+                    }
+                    else if(allRows[rowCoordinate+1][cellRowCoordinate-1].textContent === '⚫' || allRows[rowCoordinate+1][cellRowCoordinate-1].textContent === '⬛'){
+                        if(allRows[rowCoordinate+2][cellRowCoordinate-1].textContent === ''){
+                            allRows[rowCoordinate+2][cellRowCoordinate-1].style.backgroundColor = 'green';
                         }
-                        else if(allRows[rowCoordinate+1][cellRowCoordinate-1].textContent === '⚫' || allRows[rowCoordinate+1][cellRowCoordinate-1].textContent === '⬛'){
-                            if(allRows[rowCoordinate+2][cellRowCoordinate-1].textContent === ''){
-                                allRows[rowCoordinate+2][cellRowCoordinate-1].style.backgroundColor = 'green';
-                            }
-                        }
+                    }
+                    if(allRows[rowCoordinate+1][cellRowCoordinate].textContent === ''){
+                        allRows[rowCoordinate+1][cellRowCoordinate].style.backgroundColor = 'green';
                     }
                 }
                 else if(cellRowCoordinate === 1 || cellRowCoordinate === 2){
