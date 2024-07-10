@@ -1,3 +1,14 @@
+## **Game name : CHECKERS**
+
+![image](Checkers/Images/image.png)
+![image](Checkers/Images/image2.png)
+![image](Checkers/Images/image3.png)
+![image](Checkers/Images/image4.png)
+![image](Checkers/Images/image5.png)
+![image](Checkers/Images/image6.png)
+
+
+
 #### **User story**
 - The checkers game should accessible through the website.
 - The rules must be written clearly on the side of the board.
@@ -15,3 +26,6 @@
 - Creating a function to show the legal moves and to allow the player to make moves.
 - Creating a function for capturing dynamics.
 - Creating a function to check for the winner.
+
+I used HTML,CSS and JavaScript 
+Planning to add more features like turn indicator , timer and AI Player.
