@@ -854,7 +854,3 @@ active.forEach(element => {
 });
 resetButton.addEventListener('click',resetGame);
 body.addEventListener('mousemove',winnerFinder);
-
-
-
-
